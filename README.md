@@ -23,7 +23,9 @@ Este proyecto es ideal para quienes buscan profundizar en la creación de progra
 Este proyecto no solo cumple con las funciones básicas de una calculadora estadística, sino que también sirve como una excelente base para expandir la funcionalidad con otros cálculos o integraciones más avanzadas en el futuro.
 
 
-## Description: This project involves the development of an advanced statistical calculator using Python, designed to perform common statistical calculations such as mean, median, mode, and standard deviation, among others. The calculator is structured in modules, allowing for a clear and maintainable organization of the code.
+## Description: 
+
+This project involves the development of an advanced statistical calculator using Python, designed to perform common statistical calculations such as mean, median, mode, and standard deviation, among others. The calculator is structured in modules, allowing for a clear and maintainable organization of the code.
 
 The project integrates several advanced Python concepts, including the use of List Comprehension and Dictionary Comprehension with conditions to optimize the calculator's operations. In addition, lambda functions are used to perform filtering and data manipulation operations in a concise manner.
 
