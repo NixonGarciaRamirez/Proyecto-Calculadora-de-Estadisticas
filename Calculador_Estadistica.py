@@ -33,22 +33,31 @@ def Varianza(a):
 
 ### Para un CSV
 
-import csv
+import pandas as pd
 from excepciones import ListaVaciaError
+import os
 
+#Identificar la ruta actual de nuestro directorio
+def ruta_rel(ruta):
+    d = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(d, ruta)
+
+#Leer el archivo csv
 def leer_csv(archivo_csv):
-    """Lee un archivo CSV y devuelve una lista de números."""
+    """Lee un archivo CSV y retorna un DataFrame."""
+            
     try:
-        with open(archivo_csv, mode='r') as file:
-            reader = csv.reader(file)
-            numeros = [float(row[0]) for row in reader if row]
-        if not numeros:
+        df = pd.read_csv(ruta_rel(archivo_csv))
+        if df.empty:
             raise ListaVaciaError()
-        return numeros
+        return df
     except FileNotFoundError as e:
         raise FileNotFoundError(f"No se pudo encontrar el archivo: {archivo_csv}") from e
-    except ValueError as e:
-        raise ValueError(f"El archivo contiene valores no numéricos: {archivo_csv}") from e
+    except pd.errors.EmptyDataError as e:
+        raise ValueError(f"El archivo está vacío o es inválido: {archivo_csv}") from e
+    except pd.errors.ParserError as e:
+        raise ValueError(f"Error al analizar el archivo: {archivo_csv}") from e
+
 
 
 def calcular_media_csv(archivo_csv):
