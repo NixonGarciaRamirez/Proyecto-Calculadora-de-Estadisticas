@@ -72,19 +72,18 @@ def identificar_columnas(df):
 
 
 def calcular_media_csv(archivo_csv):
-    """Calcula la media de los números en un archivo CSV."""
-    numeros = leer_csv(archivo_csv)
-    return sum(numeros) / len(numeros)
+    """Calcula la media de las columnas numéricas en un archivo CSV."""
+    df = leer_csv(archivo_csv)
+    columnas_numericas, _ = identificar_columnas(df)
+    return df[columnas_numericas].mean()
+
+
 
 def calcular_mediana_csv(archivo_csv):
-    """Calcula la mediana de los números en un archivo CSV."""
-    numeros = leer_csv(archivo_csv)
-    numeros_ordenados = sorted(numeros)
-    n = len(numeros)
-    mitad = n // 2
-    if n % 2 == 0:
-        return (numeros_ordenados[mitad - 1] + numeros_ordenados[mitad]) / 2
-    else:
-        return numeros_ordenados[mitad]
+    """Calcula la mediana de las columnas numéricas en un archivo CSV."""
+    df = leer_csv(archivo_csv)
+    columnas_numericas, _ = identificar_columnas(df)
+    return df[columnas_numericas].median()
+
 
 
