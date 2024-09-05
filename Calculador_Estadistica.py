@@ -58,6 +58,17 @@ def leer_csv(archivo_csv):
     except pd.errors.ParserError as e:
         raise ValueError(f"Error al analizar el archivo: {archivo_csv}") from e
 
+# Identifica el tipo de columnas diferenciandolo entre categoricas y cuantitativas
+def identificar_columnas(df):
+    """Identifica y retorna las columnas numéricas y categóricas."""
+    columnas_numericas = df.select_dtypes(include='number').columns.tolist()
+    columnas_categoricas = df.select_dtypes(exclude='number').columns.tolist()
+    
+    if not columnas_numericas:
+        raise ValueError("No se encontraron columnas numéricas en el archivo CSV.")
+    
+    return columnas_numericas, columnas_categoricas
+
 
 
 def calcular_media_csv(archivo_csv):
